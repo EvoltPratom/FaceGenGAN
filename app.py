@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from PIL import Image
+from models.cgs import invert_grayscale
 
 app = Flask(__name__)
 
@@ -34,9 +35,15 @@ def upload_file():
         file.save(filepath)
 
         # ai jadu here
-        image = Image.open(filepath)
+        # image = Image.open(filepath)
+        # processed_filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'processed_' + filename)
+        # image.save(processed_filepath)
+
+        #testing invert_grayscale
+        p_image = invert_grayscale(filepath)
         processed_filepath = os.path.join(app.config['UPLOAD_FOLDER'], 'processed_' + filename)
-        image.save(processed_filepath)
+        p_image.save(processed_filepath)
+        
 
         return render_template('result.html', original_image=filename, processed_image='processed_' + filename)
 
