@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Image Processing Result</title>
+</head>
+<body>
+    <h1>Original Image</h1>
+    <img src="{{ url_for('uploaded_file', filename=original_image) }}" alt="Original Image">
+
+    <h1>Processed Image</h1>
+    <img src="{{ url_for('uploaded_file', filename=processed_image) }}" alt="Processed Image">
+</body>
+</html>
